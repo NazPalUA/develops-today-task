@@ -1,13 +1,26 @@
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { VehicleModel } from "@/models/vehicleDataSchema"
 
 export default async function VehicleCard({ model }: { model: VehicleModel }) {
 	return (
-		<div
-			key={model.Model_ID}
-			className="w-full max-w-xl bg-white shadow rounded p-4 mb-4"
+		<Card
+			key={`${model.Make_ID}-${model.Model_ID}`}
+			className="hover:shadow-lg transition-shadow duration-300"
 		>
-			<h2 className="text-xl font-semibold">{model.Model_Name}</h2>
-			<p className="text-gray-600">Make: {model.Make_Name}</p>
-		</div>
+			<CardHeader>
+				<CardTitle className="text-lg font-semibold">
+					{model.Model_Name}
+				</CardTitle>
+			</CardHeader>
+			<CardContent>
+				<Badge variant="secondary" className="mb-2">
+					{model.Make_Name}
+				</Badge>
+				<p className="text-sm text-muted-foreground">
+					Model ID: {model.Model_ID}
+				</p>
+			</CardContent>
+		</Card>
 	)
 }
