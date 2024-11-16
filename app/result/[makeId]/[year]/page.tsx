@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 		for (const make of makes) {
 			for (const year of years) {
-				paths.push({ makeId: make.MakeId.toString(), year })
+				paths.push({ makeId: make.MakeId.toString(), year: year.toString() })
 			}
 		}
 
