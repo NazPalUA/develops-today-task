@@ -1,6 +1,6 @@
 import { Container } from "@/components/Container"
-import { SkeletonVehicleModels } from "@/components/SkeletonVehicleModels"
-import VehicleModels from "@/components/VehicleModels"
+import { ModelsList, SkeletonVehicleModels } from "@/components/ModelsList"
+
 import { fetchVehicleMakes } from "@/lib/fetchVehicleMakes"
 import { Suspense } from "react"
 
@@ -36,7 +36,7 @@ export default async function ResultPage({
 		<Container className="flex-1 flex flex-col ">
 			<h1 className="text-3xl font-bold mb-6">Vehicle Models</h1>
 			<Suspense fallback={<SkeletonVehicleModels />}>
-				<VehicleModels params={{ makeId, year }} />
+				<ModelsList params={{ makeId, year }} />
 			</Suspense>
 		</Container>
 	)

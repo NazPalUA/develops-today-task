@@ -11,6 +11,7 @@ import {
  * @returns {Promise<VehicleMake[]>} - A promise that resolves to an array of VehicleMake objects.
  * @throws {Error} - Throws an error if the fetch operation fails or the data is invalid.
  */
+
 export async function fetchVehicleMakes(): Promise<VehicleMake[]> {
 	const API_URL =
 		"https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json"

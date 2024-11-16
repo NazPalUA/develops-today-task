@@ -1,16 +1,35 @@
 import { Container } from "@/components/Container"
-import FilterForm from "@/components/FilterForm"
-import { fetchVehicleMakes } from "@/lib/fetchVehicleMakes"
-import { getModalYears } from "@/lib/utils"
+import { FilterForm, SkeletonFilterForm } from "@/components/FilterForm"
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card"
+import { Sparkles } from "lucide-react"
+import { Suspense } from "react"
 
 export default async function Home() {
-	const years = getModalYears(2014)
-
-	const makes = await fetchVehicleMakes()
-
 	return (
 		<Container className="flex-1 flex items-center justify-center">
-			<FilterForm makes={makes} years={years} />
+			<Card className="w-full max-w-md bg-background/80 backdrop-blur-sm">
+				<CardHeader>
+					<CardTitle className="flex items-center justify-between">
+						Find Your Perfect Car
+						<Sparkles className="h-5 w-5 text-primary animate-ping" />
+					</CardTitle>
+					<CardDescription>
+						Select vehicle make and model year to start your search
+					</CardDescription>
+				</CardHeader>
+
+				<CardContent className="space-y-8">
+					<Suspense fallback={<SkeletonFilterForm />}>
+						<FilterForm />
+					</Suspense>
+				</CardContent>
+			</Card>
 		</Container>
 	)
 }

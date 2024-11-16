@@ -1,7 +1,7 @@
-import VehicleCard from "@/components/VehicleCard"
 import { fetchVehicleData } from "@/lib/fetchVehicleData"
 import { VehicleModel } from "@/models/vehicleDataSchema"
 import NoModels from "./NoModels"
+import VehicleCard from "./VehicleCard"
 
 interface ResultPageProps {
 	params: {
@@ -10,7 +10,7 @@ interface ResultPageProps {
 	}
 }
 
-export default async function VehicleModels({ params }: ResultPageProps) {
+export async function ModelsList({ params }: ResultPageProps) {
 	const { makeId, year } = params
 	let models: VehicleModel[] = []
 
