@@ -1,8 +1,8 @@
 import "server-only"
 
 import {
-	VehicleMake,
-	VehicleMakesResponseSchema,
+  VehicleMake,
+  VehicleMakesResponseSchema,
 } from "../models/vehicleMakesSchema"
 
 /**
@@ -17,7 +17,9 @@ export async function fetchVehicleMakes(): Promise<VehicleMake[]> {
 		"https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json"
 
 	try {
-		const response = await fetch(API_URL)
+		const response = await fetch(API_URL, {
+			next: { revalidate: 3600 },
+		})
 
 		if (!response.ok) {
 			throw new Error(

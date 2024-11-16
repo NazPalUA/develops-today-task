@@ -1,6 +1,8 @@
+import "server-only"
+
 import {
-	VehicleDataResponseSchema,
-	VehicleModel,
+  VehicleDataResponseSchema,
+  VehicleModel,
 } from "../models/vehicleDataSchema"
 
 /**
@@ -18,7 +20,9 @@ export async function fetchVehicleData(
 	const API_URL = `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${modelYear}?format=json`
 
 	try {
-		const response = await fetch(API_URL)
+		const response = await fetch(API_URL, {
+			next: { revalidate: 3600 },
+		})
 
 		if (!response.ok) {
 			throw new Error(
