@@ -1,3 +1,4 @@
+import { Container } from "@/components/Container"
 import { SkeletonVehicleModels } from "@/components/SkeletonVehicleModels"
 import VehicleModels from "@/components/VehicleModels"
 import { fetchVehicleMakes } from "@/lib/fetchVehicleMakes"
@@ -32,11 +33,11 @@ export default async function ResultPage({
 	params: { makeId, year },
 }: ResultPageProps) {
 	return (
-		<div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground p-4">
+		<Container className="flex-1 flex flex-col ">
 			<h1 className="text-3xl font-bold mb-6">Vehicle Models</h1>
 			<Suspense fallback={<SkeletonVehicleModels />}>
 				<VehicleModels params={{ makeId, year }} />
 			</Suspense>
-		</div>
+		</Container>
 	)
 }
