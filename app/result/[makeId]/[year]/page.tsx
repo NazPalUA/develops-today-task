@@ -1,7 +1,5 @@
 import { Container } from "@/components/Container"
 import { ModelsList, SkeletonVehicleModels } from "@/components/ModelsList"
-
-import { fetchVehicleMakes } from "@/lib/fetchVehicleMakes"
 import { Suspense } from "react"
 
 interface ResultPageProps {
@@ -11,23 +9,23 @@ interface ResultPageProps {
 	}
 }
 
-export async function generateStaticParams() {
-	const makes = await fetchVehicleMakes()
-	const currentYear = new Date().getFullYear()
-	const years = Array.from({ length: currentYear - 2014 }, (_, i) =>
-		(2015 + i).toString()
-	)
+// export async function generateStaticParams() {
+// 	const makes = await fetchVehicleMakes()
+// 	const currentYear = new Date().getFullYear()
+// 	const years = Array.from({ length: currentYear - 2014 }, (_, i) =>
+// 		(2015 + i).toString()
+// 	)
 
-	const paths = []
+// 	const paths = []
 
-	for (const make of makes) {
-		for (const year of years) {
-			paths.push({ makeId: make.MakeId.toString(), year })
-		}
-	}
+// 	for (const make of makes) {
+// 		for (const year of years) {
+// 			paths.push({ makeId: make.MakeId.toString(), year })
+// 		}
+// 	}
 
-	return paths
-}
+// 	return paths
+// }
 
 export default async function ResultPage({
 	params: { makeId, year },
